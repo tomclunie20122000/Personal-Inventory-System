@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PersonalInventorySystem.BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -19,41 +20,41 @@ namespace PersonalInventorySystem
         {
             InitializeComponent();
         }
-
+        usersBLL ubl = new usersBLL();
         private string currentUser = LoginForm.currentUserID;
-        //private string connString = ConfigurationManager.ConnectionStrings["PersonalInventorySystem.Properties.Settings.HomeInventorySystemConnectionString"].ConnectionString;
-        private string connString = "Data Source=TOMDSKTP;Initial Catalog=HomeInventorySystem;Integrated Security=True";
+
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection(connString))
+            try
             {
-                //Open Connection
-                conn.Open();
-
-                //Email format validation
-                string email_reg = newemailtxt.Text;
-                Regex rEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-                Match emailMatch = rEmail.Match(email_reg);
-
-                if (emailMatch.Success)
+                if (ubl.isEmailValid(newemailtxt.Text).Success)
                 {
-                    //Execute Query
-                    SqlCommand cmd = new SqlCommand("UPDATE usertbl SET email ='" + newemailtxt.Text + "' WHERE id='" + currentUser + "'", conn);
-                    cmd.ExecuteNonQuery();
-
+                    ubl.updateEmailAddress(newemailtxt.Text, currentUser);
                     this.Close();
                 }
                 else
                 {
                     MessageBox.Show("Your email does not meet the format requirements...");
                 }
-            }            
+            }
+            catch
+            {
+                MessageBox.Show("Error updating email address...");
+            }
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            try
+            {
+                this.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Error cancelling process...");
+            }
         }
     } 
 }

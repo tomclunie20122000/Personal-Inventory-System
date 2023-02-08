@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PersonalInventorySystem.DAL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace PersonalInventorySystem
             {
                 throw;
             }
-        }
+        }        
 
         public void addItem(string currentUser, string name, string desc, string value, string quantity, string purchaseD, string retailer, string URL)
         {

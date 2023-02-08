@@ -89,16 +89,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HomeInventorySystemDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="HomeInventorySystemDataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HomeInventorySystemDataSet1.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="HomeInventorySystemDataSet2.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HomeInventorySystemDataSet2.xsd</DependentUpon>
-    </Compile>
     <Compile Include="BLL\itemBLL.cs" />
     <Compile Include="DAL\itemDAL.cs" />
     <Compile Include="LoginForm.cs">
@@ -178,28 +168,6 @@
     </None>
     <None Include="HomeInventorySystemDataSet.xss">
       <DependentUpon>HomeInventorySystemDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="HomeInventorySystemDataSet1.xsc">
-      <DependentUpon>HomeInventorySystemDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="HomeInventorySystemDataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>HomeInventorySystemDataSet1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="HomeInventorySystemDataSet1.xss">
-      <DependentUpon>HomeInventorySystemDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="HomeInventorySystemDataSet2.xsc">
-      <DependentUpon>HomeInventorySystemDataSet2.xsd</DependentUpon>
-    </None>
-    <None Include="HomeInventorySystemDataSet2.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>HomeInventorySystemDataSet2.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="HomeInventorySystemDataSet2.xss">
-      <DependentUpon>HomeInventorySystemDataSet2.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

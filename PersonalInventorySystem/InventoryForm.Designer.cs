@@ -56,9 +56,9 @@
             this.itemtblBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.itemtblTableAdapter2 = new PersonalInventorySystem.HomeInventorySystemDataSetTableAdapters.itemtblTableAdapter();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.homeInventorySystemDataSet21 = new PersonalInventorySystem.HomeInventorySystemDataSet2();
+            this.homeInventorySystemDataSet21 = new PersonalInventorySystem.HomeInventorySystemDataSet();
             this.itemtblBindingSource4 = new System.Windows.Forms.BindingSource(this.components);
-            this.itemtblTableAdapter3 = new PersonalInventorySystem.HomeInventorySystemDataSet2TableAdapters.itemtblTableAdapter();
+            this.itemtblTableAdapter3 = new PersonalInventorySystem.HomeInventorySystemDataSetTableAdapters.itemtblTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemtblBindingSource3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.homeInventorySystemDataSet2)).BeginInit();
@@ -342,8 +342,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn valueperitemDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
         private System.Windows.Forms.TextBox textBox1;
-        private HomeInventorySystemDataSet2 homeInventorySystemDataSet21;
+        private HomeInventorySystemDataSet homeInventorySystemDataSet21;
         private System.Windows.Forms.BindingSource itemtblBindingSource4;
-        private HomeInventorySystemDataSet2TableAdapters.itemtblTableAdapter itemtblTableAdapter3;
+        private HomeInventorySystemDataSetTableAdapters.itemtblTableAdapter itemtblTableAdapter3;
     }
 }

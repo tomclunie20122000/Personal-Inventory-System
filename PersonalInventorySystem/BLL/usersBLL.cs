@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Security.Policy;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -20,23 +21,19 @@ namespace PersonalInventorySystem.BLL
             {
                 return udl.loadUserInfo(currentUser);
             }
-            catch 
-            {
-                throw;
-            }            
-        }
-
-        public bool usernameExists(string username)
-        {
-            try
-            {
-                return udl.doesUsernameExist(username);
-            }
             catch
             {
                 throw;
             }
         }
+
+
+        // email
+
+        public void updateEmailAddress(string email, string currentUser)
+        {
+            udl.updateEmail(email, currentUser);
+        }        
 
         public bool emailExists(string email)
         {
@@ -64,6 +61,19 @@ namespace PersonalInventorySystem.BLL
             }
         }
 
+        // mobile
+        public void updateMobileNumber(string mobile, string currentUser)
+        {
+            try
+            {
+                udl.updateMobile(mobile, currentUser);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public Match isMobileValid(string mobile)
         {
             try
@@ -77,11 +87,25 @@ namespace PersonalInventorySystem.BLL
                 throw;
             }
         }
+
+        // password
+        public void updatePasswordInput(string password, string currentUser)
+        {
+            try
+            {
+                udl.updatePassword(password, currentUser);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public Match isPasswordValid(string password)
         {
             try
             {
-                Regex rPassword = new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$");
+                Regex rPassword = new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@£$%^&*-]).{8,}$");
                 Match passwordMatch = rPassword.Match(password);
                 return passwordMatch;
             }
@@ -90,6 +114,11 @@ namespace PersonalInventorySystem.BLL
                 throw;
             }
         }
+
+
+        // username
+
+
         public Match isUsernameValid(string username)
         {
             try
@@ -97,6 +126,18 @@ namespace PersonalInventorySystem.BLL
                 Regex rUsername = new Regex("^[A-Za-z][A-Za-z0-9_]{7,29}$");
                 Match usernameMatch = rUsername.Match(username);
                 return usernameMatch;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public bool usernameExists(string username)
+        {
+            try
+            {
+                return udl.doesUsernameExist(username);
             }
             catch
             {

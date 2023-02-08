@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PersonalInventorySystem.BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -20,36 +21,29 @@ namespace PersonalInventorySystem
             InitializeComponent();
         }
 
+        usersBLL ubl = new usersBLL();
+        UserProfileForm upf = new UserProfileForm();
         private string currentUser = LoginForm.currentUserID;
-        //private string connString = ConfigurationManager.ConnectionStrings["PersonalInventorySystem.Properties.Settings.HomeInventorySystemConnectionString"].ConnectionString;
-        private string connString = "Data Source=TOMDSKTP;Initial Catalog=HomeInventorySystem;Integrated Security=True";
+
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            using (SqlConnection conn = new SqlConnection(connString))
+            try
             {
-                //Open Connection
-                conn.Open();
-
-                //Password format validation
-                string password_reg = newpasstxt.Text;
-                Regex rPassword = new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$");
-                Match PasswordMatch = rPassword.Match(password_reg);
-
-                if (PasswordMatch.Success)
+                if (ubl.isPasswordValid(newpasstxt.Text).Success)
                 {
-                    //Execute Query
-                    SqlCommand cmd = new SqlCommand("UPDATE usertbl SET password ='" + newpasstxt.Text + "' WHERE id='" + currentUser + "'", conn);
-                    cmd.ExecuteNonQuery();
-
+                    ubl.updatePasswordInput(newpasstxt.Text, currentUser);
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Your password does not meet the format requirements or is the same as your current password.");
+                    MessageBox.Show("Your password does not meet the format requirements...");
                 }
-            }            
+            }
+            catch
+            {
+                MessageBox.Show("Error updating password...");
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -70,8 +70,10 @@ namespace PersonalInventorySystem
             {
                 using (SqlConnection conn = new SqlConnection(connString))
                 {
-                    conn.Open();
-
+                    if (ConnectionState.Closed == conn.State)
+                    {
+                        conn.Open();
+                    }
                     SqlCommand cmd = new SqlCommand("INSERT INTO itemtbl (user_id, name, description, value_per_item, quantity) VALUES ('" + currentUser + "', '" + name + "', '" + desc + "', '" + value + "', '" + quantity + "')", conn);
                     cmd.ExecuteNonQuery();
 

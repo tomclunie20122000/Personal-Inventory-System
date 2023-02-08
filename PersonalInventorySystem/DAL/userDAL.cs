@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using PersonalInventorySystem.BLL;
 using System.Security.Cryptography;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Security.Policy;
+using System.Data;
 
 namespace PersonalInventorySystem.DAL
 {
@@ -25,16 +27,16 @@ namespace PersonalInventorySystem.DAL
 
                 using (SqlConnection conn = new SqlConnection(connString))
                 {
-                    //Open Connection
-                    conn.Open();
+                    if (ConnectionState.Closed == conn.State)
+                    {
+                        conn.Open();
+                    }
 
-                    //Execute Query
                     SqlCommand cmd = new SqlCommand("SELECT * FROM usertbl WHERE id='" + currentUser + "' ", conn);
                     SqlDataReader reader = cmd.ExecuteReader();
 
-                    while (reader.Read()) //opens reader
-                    {
-                        //Grabs all user info and fills out text boxes on form
+                    while (reader.Read())
+                    {                         
                         list.Add(reader.GetValue(1).ToString());
                         list.Add(reader.GetValue(2).ToString());
                         list.Add(reader.GetValue(3).ToString());
@@ -54,14 +56,59 @@ namespace PersonalInventorySystem.DAL
             }                      
         }
 
+        public void updateEmail(string email, string currentUser)
+        {
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                if (ConnectionState.Closed == conn.State)
+                {
+                    conn.Open();
+                }
+                SqlCommand cmd = new SqlCommand("UPDATE usertbl SET email ='" + email + "' WHERE id='" + currentUser + "'", conn);
+                cmd.ExecuteNonQuery();
+            }              
+        }
+
+        public void updateMobile(string mobile, string currentUser)
+        {
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                if (ConnectionState.Closed == conn.State)
+                {
+                    conn.Open();
+                }
+                SqlCommand cmd = new SqlCommand("UPDATE usertbl SET mobile ='" + mobile + "' WHERE id='" + currentUser + "'", conn);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void updatePassword(string password, string currentUser)
+        {
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                if (ConnectionState.Closed == conn.State)
+                {
+                    conn.Open();
+                }
+                byte[] pass = Encoding.UTF8.GetBytes(password);
+                byte[] salt = Encoding.UTF8.GetBytes(getSalt());
+                string password_hashed = Convert.ToBase64String(GenerateSaltedHash(pass, salt));
+
+                SqlCommand cmd = new SqlCommand("UPDATE usertbl SET password_hash='" + password_hashed + "', password_salt='"+ Convert.ToBase64String(salt) + "' WHERE id='" + currentUser + "'", conn);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         public void registerUsers(string u, string p, string e, string m, string d, DateTime date)
         {
             try 
             {
                 using (SqlConnection conn = new SqlConnection(connString))
                 {
-                    conn.Open();
-
+                    if (ConnectionState.Closed == conn.State)
+                    {
+                        conn.Open();
+                    }
 
                     if (doesUsernameExist(u) == false && doesEmailExist(e) == false)
                     {
@@ -95,7 +142,10 @@ namespace PersonalInventorySystem.DAL
                 bool doesUserExist = false;
                 using (SqlConnection conn = new SqlConnection(connString))
                 {
-                    conn.Open();
+                    if (ConnectionState.Closed == conn.State)
+                    {
+                        conn.Open();
+                    }
 
                     SqlCommand cmd = new SqlCommand("SELECT * FROM usertbl WHERE username= '" + username + "'", conn);
                     SqlDataReader dr = cmd.ExecuteReader();
@@ -125,7 +175,10 @@ namespace PersonalInventorySystem.DAL
                 bool doesUserExist = false;
                 using (SqlConnection conn = new SqlConnection(connString))
                 {
-                    conn.Open();
+                    if (ConnectionState.Closed == conn.State)
+                    {
+                        conn.Open();
+                    }
 
                     SqlCommand cmd = new SqlCommand("SELECT * FROM usertbl WHERE email= '" + email + "'", conn);
                     SqlDataReader dr = cmd.ExecuteReader();
