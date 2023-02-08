@@ -40,8 +40,7 @@ namespace PersonalInventorySystem
             catch
             {
                 MessageBox.Show("Error Loading in user data...");
-            }
-                             
+            }                             
         }
 
         private void UserProfileForm_Load(object sender, EventArgs e)
@@ -106,7 +105,7 @@ namespace PersonalInventorySystem
             {
                 MessageBox.Show("Error loading mobile form...");
             }
-}
+        }
 
         private void refreshBtn_Click(object sender, EventArgs e)
         {
@@ -117,8 +116,7 @@ namespace PersonalInventorySystem
             catch
             {
                 MessageBox.Show("Error refreshing data...");            
-            }
-            
+            }            
         }
 
         private void button3_Click(object sender, EventArgs e)

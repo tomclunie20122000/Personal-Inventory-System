@@ -16,48 +16,104 @@ namespace PersonalInventorySystem.BLL
 
         public Array getUserInfo(string currentUser)
         {
-            return udl.loadUserInfo(currentUser);
+            try
+            {
+                return udl.loadUserInfo(currentUser);
+            }
+            catch 
+            {
+                throw;
+            }            
         }
 
         public bool usernameExists(string username)
         {
-            return udl.doesUsernameExist(username);
+            try
+            {
+                return udl.doesUsernameExist(username);
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public bool emailExists(string email)
         {
-            return udl.doesEmailExist(email);
+            try
+            {
+                return udl.doesEmailExist(email);
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public Match isEmailValid(string email)
         {            
-            Regex rEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-            Match emailMatch = rEmail.Match(email);
-            return emailMatch;
+            try
+            {
+                Regex rEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+                Match emailMatch = rEmail.Match(email);
+                return emailMatch;
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public Match isMobileValid(string mobile)
         {
-            Regex rMobile = new Regex("^\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,3}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$");
-            Match mobileMatch = rMobile.Match(mobile);
-            return mobileMatch;
+            try
+            {
+                Regex rMobile = new Regex("^\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,3}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$");
+                Match mobileMatch = rMobile.Match(mobile);
+                return mobileMatch;
+            }
+            catch
+            {
+                throw;
+            }
         }
         public Match isPasswordValid(string password)
         {
-            Regex rPassword = new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$");
-            Match passwordMatch = rPassword.Match(password);
-            return passwordMatch;
+            try
+            {
+                Regex rPassword = new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$");
+                Match passwordMatch = rPassword.Match(password);
+                return passwordMatch;
+            }
+            catch
+            {
+                throw;
+            }
         }
         public Match isUsernameValid(string username)
         {
-            Regex rUsername = new Regex("^[A-Za-z][A-Za-z0-9_]{7,29}$");
-            Match usernameMatch = rUsername.Match(username);
-            return usernameMatch;
+            try
+            {
+                Regex rUsername = new Regex("^[A-Za-z][A-Za-z0-9_]{7,29}$");
+                Match usernameMatch = rUsername.Match(username);
+                return usernameMatch;
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public void registerUser(string u, string p, string e, string m, string d, DateTime date)
         {
-            udl.registerUsers(u, p, e, m, d, date);
+            try
+            {
+                udl.registerUsers(u, p, e, m, d, date);
+            }
+            catch
+            {
+                throw;
+            }
         }     
     }
 }

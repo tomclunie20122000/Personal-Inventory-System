@@ -40,7 +40,6 @@ namespace PersonalInventorySystem
             {
                 throw;
             }
-            
         }
 
         public DataTable search(string search)

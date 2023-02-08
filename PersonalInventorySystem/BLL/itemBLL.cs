@@ -12,22 +12,50 @@ namespace PersonalInventorySystem
         itemDAL getItems = new itemDAL();
         public DataTable GetItemsForUser(string query)
         {
-            return getItems.load(query);
+            try
+            {
+                return getItems.load(query);
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public void deleteItem(string value)
         {
-            getItems.delete(value);
+            try
+            {
+                getItems.delete(value);
+            }
+            catch
+            {
+                throw;
+            }            
         }
 
         public string getTotalPrice(string user)
         {
-            return getItems.calculate_price(user).ToString();
+            try
+            {
+                return getItems.calculate_price(user).ToString();
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public DataTable updateSearch(string search)
         {
-            return getItems.search(search);
+            try
+            {
+                return getItems.search(search);
+            }
+            catch
+            {
+                throw;
+            }
         }
 
     }
