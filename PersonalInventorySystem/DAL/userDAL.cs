@@ -136,7 +136,7 @@ namespace PersonalInventorySystem.DAL
                         {
                             doesUserExist = true;
                             break;
-                        }
+                        } 
                     }
                     dr.Close();
                     return doesUserExist;

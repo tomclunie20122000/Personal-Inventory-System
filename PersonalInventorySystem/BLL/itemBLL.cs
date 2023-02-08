@@ -22,6 +22,18 @@ namespace PersonalInventorySystem
             }
         }
 
+        public void addItem(string currentUser, string name, string desc, string value, string quantity, string purchaseD, string retailer, string URL)
+        {
+            try
+            {
+                getItems.add(currentUser, name, desc, value, quantity, purchaseD, retailer, URL);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public void deleteItem(string value)
         {
             try

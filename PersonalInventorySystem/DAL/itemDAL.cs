@@ -64,6 +64,39 @@ namespace PersonalInventorySystem
             }            
         }
 
+        public void add(string currentUser, string name, string desc, string value, string quantity, string purchaseD, string retailer, string URL)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("INSERT INTO itemtbl (user_id, name, description, value_per_item, quantity) VALUES ('" + currentUser + "', '" + name + "', '" + desc + "', '" + value + "', '" + quantity + "')", conn);
+                    cmd.ExecuteNonQuery();
+
+                    SqlCommand cmd1 = new SqlCommand("SELECT * FROM itemtbl WHERE user_id='" + currentUser + "' AND name='" + name + "' AND description= '" + desc + "' AND quantity = '" + quantity + "' ", conn);
+                    SqlDataReader reader = cmd1.ExecuteReader();
+
+                    string currentItemID = "";
+
+                    while (reader.Read())
+                    {
+                        currentItemID = reader.GetValue(0).ToString();
+                    }
+
+                    reader.Close();
+
+                    SqlCommand cmd2 = new SqlCommand("INSERT INTO item_info (item_id, purchase_date, image_url, retailer) VALUES ('" + currentItemID + "', '" + purchaseD + "', '" + URL + "', '" + retailer + "') ", conn);
+                    cmd2.ExecuteNonQuery();
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public void delete( string value)
         {
             try
