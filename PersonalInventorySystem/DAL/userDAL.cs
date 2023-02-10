@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using System.Windows.Forms;
 using PersonalInventorySystem.BLL;
@@ -17,7 +18,8 @@ namespace PersonalInventorySystem.DAL
 {
     internal class userDAL
     {
-        private string connString = "Data Source=TOMDSKTP;Initial Catalog=HomeInventorySystem;Integrated Security=True";
+
+        private string connString = System.Configuration.ConfigurationManager.ConnectionStrings["PersonalInventorySystem.Properties.Settings.MainDataSet"].ConnectionString;
 
         public Array loadUserInfo(string currentUser)
         {

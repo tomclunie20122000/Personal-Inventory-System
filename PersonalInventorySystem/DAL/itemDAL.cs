@@ -17,8 +17,8 @@ namespace PersonalInventorySystem
     internal class itemDAL
     {
         private DataTable dt = new DataTable();
-        private string connString = "Data Source=TOMDSKTP;Initial Catalog=HomeInventorySystem;Integrated Security=True";
-        
+        private string connString = System.Configuration.ConfigurationManager.ConnectionStrings["PersonalInventorySystem.Properties.Settings.MainDataSet"].ConnectionString;
+
 
         public DataTable load(string user)
         {

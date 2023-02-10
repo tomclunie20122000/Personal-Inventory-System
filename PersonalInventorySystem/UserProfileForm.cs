@@ -24,7 +24,7 @@ namespace PersonalInventorySystem
         private string currentUser = LoginForm.currentUserID;
 
 
-        private void load_data() //loads in user data
+        private void load_data()
         {
             try
             {
